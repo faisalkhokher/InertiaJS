@@ -11,7 +11,7 @@
           <span class="sr-only">Workflow</span>
           <img class="h-8 w-auto sm:h-10" src="https://waada.pk/web/images/logo/footer-logo.png" alt="">
         </a>
-        <span class="ml-4">
+        <span class="ml-4 mt-1">
          <strong>Welcome {{username}} </strong>
         </span>
       </div>
@@ -30,6 +30,7 @@
 <section class=p-6>
 <div class=max-w-2xl>
     <slot></slot>
+    <iframe height="200px" width="100%" frameborder="no" scrolling="no" seamless src="https://player.simplecast.com/e988d91c-ce55-49bd-b0e0-f74dd973baa2?dark=false"></iframe>
 </div>
 </section>
 

@@ -1,21 +1,12 @@
 <template>
-  <Layout>
     <p class="text-2xl">Welcome {{name}}</p>
-</Layout>
+    <h1>Time {{time}}</h1>
 </template>
 
 <script>
 import Layout from '../Pages/shared/Layout';
-export default {
 
-    props: {
-        name: {
-            type: String,
-            default: 'World'
-        }
-    },
-  components: {
-    Layout
-  },
-  }
+export default {
+   layout: Layout
+}
 </script>

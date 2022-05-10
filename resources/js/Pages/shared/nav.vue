@@ -19,12 +19,10 @@
 <script>
 
 import  NavLink  from "./NavLink";
-import { Link } from "@inertiajs/inertia-vue3";
 
 export default {
   components: {
     NavLink,
-    Link
   },
 };
 </script>

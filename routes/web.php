@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    $time = now()->toTimeString();
     return Inertia::render('home' , [
         'name' => 'Inertia',
         "frameworks" => [
@@ -22,7 +23,8 @@ Route::get('/', function () {
             "Vue",
             "React",
             "Bootstrap",
-        ]
+        ],
+        "time" => $time,
     ]);
 })->name('home');
 
