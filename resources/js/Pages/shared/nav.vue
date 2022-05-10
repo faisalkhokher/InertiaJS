@@ -1,0 +1,30 @@
+<template>
+       <NavLink href="/" :active="$page.component === 'home'" class=ml-2>
+            Home
+       </NavLink>
+
+        <!-- <Link :href="route('users')" class="text-black hover:underline ml-2" >Users</Link> -->
+
+        <NavLink href="/users" :active="$page.component === 'users'" class=ml-2>
+            User
+        </NavLink>
+
+        <NavLink href="/setting" :active="$page.component === 'setting'" class=ml-2>
+            setting
+        </NavLink>
+
+        <Link class=ml-2 href="/logout" method="post" as="button">Logout</Link>
+</template>
+
+<script>
+
+import  NavLink  from "./NavLink";
+import { Link } from "@inertiajs/inertia-vue3";
+
+export default {
+  components: {
+    NavLink,
+    Link
+  },
+};
+</script>
