@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Repositiries\Interfaces\UserInterface;
+use App\Repositiries\PaymentRepository;
+use App\Repositiries\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +26,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+
+        $this->app->singleton(PaymentRepository::class , function ($value){
+            return new PaymentRepository("6969");
+        });
     }
 }
