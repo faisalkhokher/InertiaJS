@@ -7,6 +7,7 @@
 import Layout from '../Pages/shared/Layout';
 
 export default {
+    //! this is persistence layout for all pages in this all component is under layout.
    layout: Layout
 }
 </script>
