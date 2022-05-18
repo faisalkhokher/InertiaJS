@@ -1,4 +1,8 @@
+
 <template>
+<Head>
+<title>Home</title>
+</Head>
     <p class="text-2xl">Welcome {{name}}</p>
     <h1>Time {{time}}</h1>
 </template>

@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,13 +30,7 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
-Route::get('/users' , function(){
-    // sleep(2);
-    $time = now()->toTimeString();
-    return Inertia::render('users',[
-        "time" => $time,
-    ]);
-})->name('users');
+Route::get('/users',[UserController::class , 'index'])->name('users');
 
 Route::get('/setting' , function(){
     return Inertia::render('setting');

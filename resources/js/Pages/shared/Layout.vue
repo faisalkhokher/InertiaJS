@@ -30,7 +30,7 @@
 <section class=p-6>
 <div class=max-w-2xl>
     <slot></slot>
-    <iframe height="200px" width="100%" frameborder="no" scrolling="no" seamless src="https://player.simplecast.com/e988d91c-ce55-49bd-b0e0-f74dd973baa2?dark=false"></iframe>
+    <!-- <iframe height="200px" width="100%" frameborder="no" scrolling="no" seamless src="https://player.simplecast.com/e988d91c-ce55-49bd-b0e0-f74dd973baa2?dark=false"></iframe> -->
 </div>
 </section>
 
