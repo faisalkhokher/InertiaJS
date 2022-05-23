@@ -1,7 +1,16 @@
 <template>
-    <p class="text-2xl">User's Dashboard</p>
-    <section>
 
+   <section>
+   <div class="flex justify-between">
+       <p class="user-headline">User's Dashboard</p>
+       <form v-on:submit.prevent="onEnter()">
+       <input type="search" v-model="search" name="search" placeholder="Search.." class="border px-2 rounded"   >
+       </form>
+
+   </div>
+   </section>
+
+    <section>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -56,18 +65,46 @@
         </div>
 
     </section>
-    <Pagination :custome_link="users.links">
+    <Pagination :links="users.links">
     </Pagination>
 </template>
 
 <script>
-import Pagination from './shared/Pagination.vue'
+import Pagination from './shared/Pagination'
 import Layout from '../Pages/shared/Layout';
+import { Inertia } from '@inertiajs/inertia'
+import {watch,ref} from 'vue';
+
 export default {
     components: { Pagination },
     layout: Layout,
     props: {
         users: {}
+    },
+    data() {
+        return {
+            search: ''
+        }
+    },
+    // methods: {
+    //     onEnter() {
+    //        console.log("KAKA");
+    //        Inertia.get('/users' , {
+    //         search: this.search
+    //     });
+
+
+    //     }
+    // },
+    watch: {
+        search(value) {
+            console.log(value);
+            Inertia.get('/users' , {
+            search: value
+            })
+        }
     }
 }
+
+
 </script>

@@ -8,11 +8,15 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    function index()
+    function index(Request $request)
     {
-        // return User::paginate(10);
+        $users = User::query()
+            ->when($request->filled('search'), function ($query) use ($request) {
+                $query->where('name', 'like', '%' . $request->search . '%');
+            })
+            ->paginate(10);
         return Inertia::render('users',[
-            "users" => User::paginate(10),
+            "users" => $users,
         ]);
     }
 }
