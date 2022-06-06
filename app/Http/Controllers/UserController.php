@@ -11,6 +11,7 @@ class UserController extends Controller
 {
     function index(Request $request)
     {
+        // dd($request->all());
         $users = User::query()
             ->when($request->filled('search'), function ($query) use ($request) {
                 $query->where('name', 'like', '%' . $request->search . '%');
