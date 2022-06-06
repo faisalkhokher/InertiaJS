@@ -31,6 +31,8 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/users',[UserController::class , 'index'])->name('users');
+Route::get('/create',[UserController::class , 'create'])->name('create');
+Route::post('/create-user',[UserController::class , 'createUser'])->name('create.user');
 
 Route::get('/setting' , function(){
     return Inertia::render('setting');

@@ -7,6 +7,8 @@
        <input type="search" v-model="search" name="search" placeholder="Search.." class="border px-2 rounded"   >
        </form>
 
+       <Link class="btn btn-primary" :href="route('create')">Create</Link>
+
    </div>
    </section>
 
@@ -70,8 +72,8 @@
 </template>
 
 <script>
-import Pagination from './shared/Pagination'
-import Layout from '../Pages/shared/Layout';
+import Pagination from '../shared/Pagination'
+import Layout from '../shared/Layout';
 import { Inertia } from '@inertiajs/inertia'
 import {watch,ref} from 'vue';
 
