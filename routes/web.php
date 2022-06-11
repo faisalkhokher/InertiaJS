@@ -4,6 +4,7 @@ use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,8 @@ use App\Http\Controllers\UserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::middleware(['auth'])->group(function () {
+
 
 Route::get('/', function () {
     $time = now()->toTimeString();
@@ -43,5 +46,10 @@ Route::post('/logout' , function(){
     dd("logout");
 })->name('logout');
 
+// ENd
+});
 
-
+Route::get('/login',[LoginController::class , 'create'])->name('login');
+Route::post('/login/in',[LoginController::class , 'login'])->name('loggedIn');
+Route::get('/register',[LoginController::class , 'register'])->name('register');
+Route::post('/register/user',[UserController::class , 'createUser'])->name('createUser');
