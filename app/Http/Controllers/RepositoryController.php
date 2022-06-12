@@ -30,7 +30,15 @@ class RepositoryController extends Controller
     {
         $orderRepository->all();
         return $paymentRepository->charge(2500);
-//        return  $userRepository->user();
+        // return  $userRepository->user();
     }
+
+    public function triggerQueues()
+    {
+        $this->dispatch(new \App\Jobs\ProcessPodcast('Hellow Faisal'));
+        dd("Job Done");
+    }
+
+
 
 }

@@ -5,6 +5,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RepositoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,3 +54,7 @@ Route::get('/login',[LoginController::class , 'create'])->name('login');
 Route::post('/login/in',[LoginController::class , 'login'])->name('loggedIn');
 Route::get('/register',[LoginController::class , 'register'])->name('register');
 Route::post('/register/user',[UserController::class , 'createUser'])->name('createUser');
+
+
+
+Route::get('/test',[ RepositoryController::class ,'triggerQueues']);

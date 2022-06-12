@@ -10,9 +10,11 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "inertiajs/inertia-laravel": "^0.5.4",
         "laravel/framework": "^8.75",
+        "laravel/horizon": "^5.9",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "nunomaduro/laravel-desktop-notifier": "^2.6",
+        "predis/predis": "^2.0",
         "tightenco/ziggy": "^1.4"
     },
     "require-dev": {
