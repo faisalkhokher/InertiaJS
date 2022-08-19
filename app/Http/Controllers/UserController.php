@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use App\Models\User;
 use Inertia\Inertia;
+use Spatie\Async\Pool;
 use Illuminate\Http\Request;
-use Validator;
 
 class UserController extends Controller
 {
@@ -36,5 +37,32 @@ class UserController extends Controller
         ]);
         User::create($request->all());
         return redirect()->route('login');
+    }
+
+    function test()
+    {
+        $pool = Pool::create();
+
+        $pool->add(function () {
+
+            $user = User::find(1);
+            return $user;
+        })
+        ->then(function ($output) {
+            // On success, `$output` is returned by the process or callable you passed to the queue.
+            $output->name;
+            dd($output);
+        })
+        ->catch(function ($exception) {
+            // When an exception is thrown from within a process, it's caught and passed here.
+            dd("error", $exception);
+            throw new \Exception($exception);
+        })
+        ->timeout(function () {
+            exit('Process timed out.');
+        });
+
+        $pool->wait();
+
     }
 }

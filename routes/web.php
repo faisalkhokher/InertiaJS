@@ -58,3 +58,5 @@ Route::post('/register/user',[UserController::class , 'createUser'])->name('crea
 
 
 Route::get('/test',[ RepositoryController::class ,'triggerQueues']);
+
+Route::get('/i' , [UserController::class , 'test']);
