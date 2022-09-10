@@ -65,4 +65,9 @@ class UserController extends Controller
         $pool->wait();
 
     }
+
+    function XXX()
+    {
+        return Inertia::render('Users/step');
+    }
 }
