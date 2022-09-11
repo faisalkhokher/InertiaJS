@@ -13,6 +13,10 @@
             setting
         </NavLink>
 
+        <NavLink href="/posts" :active="$page.component === 'posts'" class=ml-2>
+            Post
+        </NavLink>
+
         <Link class=ml-2 href="/logout" method="post" as="button">Logout</Link>
 </template>
 

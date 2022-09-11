@@ -19,6 +19,7 @@
      <Link :href="route('home')" :class="{ ' font-bold underline active': $page.component === 'home' }">Home</Link>
      <Link :href="route('users')" :class="{ ' font-bold underline active': $page.component === 'users' }">Users</Link>
      <Link :href="route('setting')" :class="{ ' font-bold underline active': $page.component === 'setting' }">Settings</Link>
+     <Link :href="route('posts')" :class="{ ' font-bold underline active': $page.component === 'posts' }">posts</Link>
      <!-- Build Custome Nav links -->
      <!-- <Nav></Nav> -->
     </div>

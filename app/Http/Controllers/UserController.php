@@ -66,8 +66,15 @@ class UserController extends Controller
 
     }
 
-    function XXX()
+    function search()
     {
-        return Inertia::render('Users/step');
+        dd("A");
+        return Inertia::render('Users/search');
+    }
+
+    public function fetchUsers()
+    {
+        $users = User::all();
+        return $users;
     }
 }

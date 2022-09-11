@@ -3,6 +3,7 @@
 use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RepositoryController;
@@ -63,3 +64,14 @@ Route::get('/i' , [UserController::class , 'test']);
 Route::get('/stepp' , function(){
     return Inertia::render('Users/step');
 });
+
+Route::get('/search' , function(){
+    return Inertia::render('Search/search');
+});
+
+Route::post('fetch/users' , [UserController::class , 'fetchUsers'])->name('fetch.user');
+
+Route::post('/fetch/posts' , [PostController::class , 'search'])->name('show.posts');
+Route::get('/posts' , function () {
+    return Inertia::render('post/search');
+})->name('posts');
