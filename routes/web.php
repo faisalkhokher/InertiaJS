@@ -75,3 +75,7 @@ Route::post('/fetch/posts' , [PostController::class , 'search'])->name('show.pos
 Route::get('/posts' , function () {
     return Inertia::render('post/search');
 })->name('posts');
+
+Route::get('/movies' , function () {
+    return Inertia::render('hotels/index');
+})->name('hotels');

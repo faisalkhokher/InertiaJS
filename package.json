@@ -22,12 +22,16 @@
     },
     "dependencies": {
         "@headlessui/vue": "^1.6.0",
+        "@hennge/vue3-pagination": "^1.0.17",
         "@inertiajs/inertia": "^0.11.0",
         "@inertiajs/inertia-vue3": "^0.6.0",
         "@inertiajs/progress": "^0.2.7",
         "@vue-hero-icons/outline": "^1.7.2",
         "@vue-hero-icons/solid": "^1.7.2",
+        "laravel-vue-pagination": "^3.0.0",
         "moment": "^2.29.4",
-        "vue": "^3.2.31"
+        "v-lazy-image": "^2.1.1",
+        "vue": "^3.2.31",
+        "vue-lazyload-text": "^1.0.2"
     }
 }

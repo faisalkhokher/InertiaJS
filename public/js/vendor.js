@@ -48330,6 +48330,23 @@ module.exports = function (list, options) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-lazyload-text/dist/vue-lazyload-text.esm.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/vue-lazyload-text/dist/vue-lazyload-text.esm.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "LazyText": () => (/* binding */ o),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var e={name:"LazyText",props:{src:{type:String,required:!0},intervalLine:{type:Number,default:10},defer:{type:Number,default:2e3},separator:{type:String,default:"\n"},bgColor:{type:String,required:!1,default:"rgba(0, 150, 0, 0.75)"}},data:function(){return{observer:null,intersected:!1,templates:[],startLine:0}},computed:{getBgColor:function(){return{backgroundImage:"radial-gradient("+this.bgColor+", black 120%)"}}},methods:{calcScope:function(e,t){var n=this.src.split(this.separator),a=this.startLine,r=e+this.startLine;if(this.$emit("getScope",a,r),this.startLine+=e,n.toString()===this.templates.toString())this.templates=n;else for(var o=0,i=n;o<i.length;o+=1){var s=i[o];this.templates.push(s)}}},mounted:function(){var e=this;setTimeout(function(){e.observer=new IntersectionObserver(function(t){var n;t[0].intersectionRatio<=0||(n=e.intervalLine,e.calcScope(n,0))}),e.observer.observe(e.$refs.lazyText)},e.defer)},destroyed:function(){this.observer.disconnect()}};var t=function(e,t,n,a,r,o,i,s,d,l){"boolean"!=typeof i&&(d=s,s=i,i=!1);var c,u="function"==typeof n?n.options:n;if(e&&e.render&&(u.render=e.render,u.staticRenderFns=e.staticRenderFns,u._compiled=!0,r&&(u.functional=!0)),a&&(u._scopeId=a),o?(c=function(e){(e=e||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(e=__VUE_SSR_CONTEXT__),t&&t.call(this,d(e)),e&&e._registeredComponents&&e._registeredComponents.add(o)},u._ssrRegister=c):t&&(c=i?function(){t.call(this,l(this.$root.$options.shadowRoot))}:function(e){t.call(this,s(e))}),c)if(u.functional){var p=u.render;u.render=function(e,t){return c.call(t),p(e,t)}}else{var f=u.beforeCreate;u.beforeCreate=f?[].concat(f,c):[c]}return n},n="undefined"!=typeof navigator&&/msie [6-9]\\b/.test(navigator.userAgent.toLowerCase());var a=document.head||document.getElementsByTagName("head")[0],r={};var o=t({render:function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("div",{staticClass:"terminal",style:e.getBgColor},[n("output",{ref:"lazyText",staticClass:"sentinel"},e._l(e.templates,function(t){return n("div",{domProps:{textContent:e._s(t)}})}),0),e._v(" "),n("div",[n("output",{ref:"lazyText",staticClass:"sentinel"})])])},staticRenderFns:[]},function(e){e&&e("data-v-4a4040ea_0",{source:".terminal[data-v-4a4040ea]{background-color:#000;background-image:radial-gradient(rgba(0,150,0,.75),#000 120%);height:70vh;margin:0;overflow:auto;padding:2rem;color:#fff;font:1.3rem Inconsolata,monospace;text-shadow:0 0 5px #c8c8c8}[data-v-4a4040ea]::selection{background:#0080ff;text-shadow:none}pre[data-v-4a4040ea]{white-space:pre-wrap;word-wrap:break-word}",map:void 0,media:void 0})},e,"data-v-4a4040ea",!1,void 0,function(e){return function(e,t){return function(e,t){var o=n?t.media||"default":e,i=r[o]||(r[o]={ids:new Set,styles:[]});if(!i.ids.has(e)){i.ids.add(e);var s=t.source;if(t.map&&(s+="\n/*# sourceURL="+t.map.sources[0]+" */",s+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(t.map))))+" */"),i.element||(i.element=document.createElement("style"),i.element.type="text/css",t.media&&i.element.setAttribute("media",t.media),a.appendChild(i.element)),"styleSheet"in i.element)i.styles.push(s),i.element.styleSheet.cssText=i.styles.filter(Boolean).join("\n");else{var d=i.ids.size-1,l=document.createTextNode(s),c=i.element.childNodes;c[d]&&i.element.removeChild(c[d]),c.length?i.element.insertBefore(l,c[d]):i.element.appendChild(l)}}}(e,t)}},void 0),i=Object.freeze({LazyText:o}),s=0,d=function(e,t,n){var a=e.data&&e.data.on||e.componentOptions&&e.componentOptions.listeners;a&&a[t]&&a[t].fns(n)};var l={bind:function(e,t,n){var a=t.value.intervalLine,r=a||10,o=t.value.src,i=n.children,l=n.elm,c=i[i.length-1].elm,u=function(e){!function(e,t,n,a,r){var o=a||"\n",i=n.split(o);d(r,"getScope",{start:s,end:e+s}),s+=e;for(var l=r.elm,c=0,u=i;c<u.length;c+=1){var p=u[c],f=document.createElement("div");f.textContent=p,l.appendChild(f)}}(e,0,o,t.value.separator,n)};new IntersectionObserver(function(e){e[0].intersectionRatio<=0||(u(r),l.appendChild(c),u(r))}).observe(c)},update:function(e,t,n,a){}};var c={install:function e(t){e.installed||(e.installed=!0,Object.keys(i).forEach(function(e){t.component(e,i[e])}),t.directive("lazyload-text",l))}},u=null;"undefined"!=typeof window?u=window.Vue:"undefined"!=typeof __webpack_require__.g&&(u=__webpack_require__.g.Vue),u&&u.use(c);/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (c);
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/dist/exportHelper.js":
 /*!******************************************************!*\
   !*** ./node_modules/vue-loader/dist/exportHelper.js ***!
@@ -48577,6 +48594,118 @@ function compileToFunction(template, options) {
 }
 (0,_vue_runtime_dom__WEBPACK_IMPORTED_MODULE_2__.registerRuntimeCompiler)(compileToFunction);
 
+
+
+
+/***/ }),
+
+/***/ "./node_modules/v-lazy-image/dist/v-lazy-image.mjs":
+/*!*********************************************************!*\
+  !*** ./node_modules/v-lazy-image/dist/v-lazy-image.mjs ***!
+  \*********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ index)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+var __defProp = Object.defineProperty;
+var __defProps = Object.defineProperties;
+var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
+var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
+
+var index = {
+  props: {
+    src: {
+      type: String,
+      required: true
+    },
+    srcPlaceholder: {
+      type: String,
+      default: "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+    },
+    srcset: {
+      type: String
+    },
+    intersectionOptions: {
+      type: Object,
+      default: () => ({})
+    },
+    usePicture: {
+      type: Boolean,
+      default: false
+    }
+  },
+  inheritAttrs: false,
+  setup(props, { attrs, slots, emit }) {
+    const root = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
+    const state = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
+      observer: null,
+      intersected: false,
+      loaded: false
+    });
+    const srcImage = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => state.intersected && props.src ? props.src : props.srcPlaceholder);
+    const srcsetImage = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => state.intersected && props.srcset ? props.srcset : false);
+    const load = () => {
+      if (root.value && root.value.getAttribute("src") !== props.srcPlaceholder) {
+        state.loaded = true;
+        emit("load", root.value);
+      }
+    };
+    const error = () => emit("error", root.value);
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(() => {
+      if ("IntersectionObserver" in window) {
+        state.observer = new IntersectionObserver((entries) => {
+          const image = entries[0];
+          if (image.isIntersecting) {
+            state.intersected = true;
+            state.observer.disconnect();
+            emit("intersect");
+          }
+        }, props.intersectionOptions);
+        state.observer.observe(root.value);
+      }
+    });
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onBeforeUnmount)(() => {
+      if ("IntersectionObserver" in window && state.observer) {
+        state.observer.disconnect();
+      }
+    });
+    return () => {
+      const img = (0,vue__WEBPACK_IMPORTED_MODULE_0__.h)("img", __spreadProps(__spreadValues({
+        ref: root,
+        src: srcImage.value,
+        srcset: srcsetImage.value || null
+      }, attrs), {
+        class: [
+          attrs.class,
+          "v-lazy-image",
+          { "v-lazy-image-loaded": state.loaded }
+        ],
+        onLoad: load,
+        onError: error
+      }));
+      return props.usePicture ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.h)("picture", { ref: root, onLoad: load }, state.intersected ? [slots.default, img] : [img]) : img;
+    };
+  }
+};
 
 
 
