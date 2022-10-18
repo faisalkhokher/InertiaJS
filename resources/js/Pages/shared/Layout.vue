@@ -9,7 +9,7 @@
       <div class="flex justify-start lg:w-0 lg:flex-1">
         <a href="#">
           <span class="sr-only">Workflow</span>
-          <img class="h-8 w-auto sm:h-10" src="https://waada.pk/web/images/logo/footer-logo.png" alt="">
+          <!-- <img class="h-8 w-auto sm:h-10" src="https://waada.pk/web/images/logo/footer-logo.png" alt=""> -->
         </a>
         <span class="ml-4 mt-1">
          <strong>Welcome {{username}} </strong>

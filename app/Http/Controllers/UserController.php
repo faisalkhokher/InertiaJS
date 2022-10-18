@@ -17,7 +17,7 @@ class UserController extends Controller
             ->when($request->filled('search'), function ($query) use ($request) {
                 $query->where('name', 'like', '%' . $request->search . '%');
             })
-            ->paginate(10);
+            ->paginate(5);
         return Inertia::render('Users/index',[
             "users" => $users,
         ]);

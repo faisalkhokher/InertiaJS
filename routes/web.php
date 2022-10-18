@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\Post;
 use App\Models\User;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
@@ -18,7 +20,7 @@ use App\Http\Controllers\RepositoryController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::middleware(['auth'])->group(function () {
+// Route::middleware(['auth'])->group(function () {
 
 
 Route::get('/', function () {
@@ -49,7 +51,7 @@ Route::post('/logout' , function(){
 })->name('logout');
 
 // ENd
-});
+// });
 
 Route::get('/login',[LoginController::class , 'create'])->name('login');
 Route::post('/login/in',[LoginController::class , 'login'])->name('loggedIn');
@@ -79,3 +81,29 @@ Route::get('/posts' , function () {
 Route::get('/movies' , function () {
     return Inertia::render('hotels/index');
 })->name('hotels');
+
+
+Route::get('/p-index', function (Request $request) {
+    return Inertia::render('post/index');
+});
+
+Route::post('/get/posts' , function(Request $request){
+    $limit = 1;
+    $page  = 1;
+    if($request->page){
+        $page = $request->page;
+    }
+    $offset = ($page-1) * $limit;
+    $post_query = Post::with(['category' , 'user']);
+    $total = $post_query->count();
+    $posts = $post_query->offset($offset)->limit($limit)->get();
+    $no_of_pages = ceil($total/$limit);
+    return [
+        "total"  => $total,
+        "limit"  => $limit,
+        "page"   => $page,
+        "offset" => $offset,
+        "posts"  => $posts,
+        "no_of_pages"=> $no_of_pages
+    ];
+});
