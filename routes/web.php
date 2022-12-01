@@ -3,6 +3,7 @@
 use App\Models\Post;
 use App\Models\User;
 use Inertia\Inertia;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -106,4 +107,32 @@ Route::post('/get/posts' , function(Request $request){
         "posts"  => $posts,
         "no_of_pages"=> $no_of_pages
     ];
+});
+
+Route::post('/get/cate' , function(Request $request){
+    $limit = 10;
+    $page  = 1;
+    if($request->page){
+        $page = $request->page;
+    }
+    $offset = ($page-1) * $limit;
+    $post_query = Category::query();
+    $total = $post_query->count();
+    $posts = $post_query->offset($offset)->limit($limit)->get();
+    $no_of_pages = ceil($total/$limit);
+    return [
+        "total"  => $total,
+        "limit"  => $limit,
+        "page"   => $page,
+        "offset" => $offset,
+        "cat"  => $posts,
+        "no_of_pages"=> $no_of_pages
+    ];
+});
+
+
+Route::get('/res' , [PostController::class , 'ajax'])->name('data');
+
+Route::get('view' , function (){
+    return view('ajax');
 });

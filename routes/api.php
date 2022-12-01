@@ -3,6 +3,7 @@
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\RepositoryController;
 
 /*
@@ -22,6 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/repository' , [RepositoryController::class , 'fetchUsers']);
 Route::get('/users' , [RepositoryController::class , 'users']);
+
 
 // get all categories
 Route::get('/categories' , function(){

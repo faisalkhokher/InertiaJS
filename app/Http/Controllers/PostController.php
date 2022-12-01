@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Inertia\Inertia;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -25,5 +26,19 @@ class PostController extends Controller
             'name' => $request->name
          ]);
          return Redirect::route('posts');
+    }
+
+    public function ajax()
+    {
+        return response()->json(Post::paginate(5));
+    }
+    public function ajaxPagination(Request $request)
+    {
+        // dd($request->all());
+        $items = Category::paginate(5);
+        if ($request->ajax()) {
+            return view('ajax', compact('items'));
+        }
+        return view('ajax',compact('items'));
     }
 }
