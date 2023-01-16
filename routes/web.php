@@ -136,3 +136,7 @@ Route::get('/res' , [PostController::class , 'ajax'])->name('data');
 Route::get('view' , function (){
     return view('ajax');
 });
+
+Route::get('alpine' , function (){
+    return view('alpine');
+});
