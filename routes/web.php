@@ -3,6 +3,7 @@
 use App\Models\Post;
 use App\Models\User;
 use Inertia\Inertia;
+use App\Facade\MyFacade;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -132,6 +133,7 @@ Route::post('/get/cate' , function(Request $request){
 
 
 Route::get('/res' , [PostController::class , 'ajax'])->name('data');
+Route::post('/post' , [PostController::class , 'post'])->name('post');
 
 Route::get('view' , function (){
     return view('ajax');
@@ -139,4 +141,21 @@ Route::get('view' , function (){
 
 Route::get('alpine' , function (){
     return view('alpine');
+});
+
+
+Route::get('facade' , function (){
+    $value = MyFacade::callConstructor("A");
+    dd($value);
+});
+
+// Pusher Message
+// https://morioh.com/p/90c5c4efc345?f=5cb7d89d660c8335951ca454
+Route::get('/home', function(){
+    return view('pusher');
+});
+Route::get('test', function () {
+    // event(new App\Events\MessageSent('websolutionstuff_team'));
+    event(new App\Events\AlertMessage('Faisal',"PROPERTY"));
+    return "Event has been sent!";
 });

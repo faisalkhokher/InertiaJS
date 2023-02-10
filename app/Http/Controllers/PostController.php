@@ -32,6 +32,13 @@ class PostController extends Controller
     {
         return response()->json(Post::paginate(5));
     }
+
+    public function post()
+    {
+        // dd(request()->all());
+        sleep(5);
+        return response()->json("A",404);
+    }
     public function ajaxPagination(Request $request)
     {
         // dd($request->all());

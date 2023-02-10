@@ -16,6 +16,7 @@
         "laravel/tinker": "^2.5",
         "nunomaduro/laravel-desktop-notifier": "^2.6",
         "predis/predis": "^2.0",
+        "pusher/pusher-php-server": "^7.2",
         "spatie/async": "^1.5",
         "spatie/data-transfer-object": "^2.8",
         "spiderwebtr/isauth": "^1.2",
