@@ -5,6 +5,7 @@ use App\Models\User;
 use Inertia\Inertia;
 use App\Facade\MyFacade;
 use App\Models\Category;
+use App\Jobs\CallRabbiqJob;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -156,6 +157,8 @@ Route::get('/home', function(){
 });
 Route::get('test', function () {
     // event(new App\Events\MessageSent('websolutionstuff_team'));
-    event(new App\Events\AlertMessage('Faisal',"PROPERTY"));
-    return "Event has been sent!";
+    // event(new App\Events\AlertMessage('Faisal',"PROPERTY"));
+    // return "Event has been sent!";
+
+    CallRabbiqJob::dispatch();
 });
