@@ -2,13 +2,13 @@
 
 namespace App\Jobs;
 
+use App\Models\Post;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
-use VladimirYuldashev\LaravelQueueRabbitMQ\Queue\Jobs\RabbitMQJob as BaseJob;
+use Illuminate\Contracts\Queue\ShouldBeUnique;
 
 class CallRabbiqJob implements ShouldQueue
 {
@@ -31,6 +31,11 @@ class CallRabbiqJob implements ShouldQueue
      */
     public function handle()
     {
-        echo "Call RabbiqMQ";
+        Post::create([
+            'name' => "RabbitMQ REDIRECT",
+            'user_id' => 1,
+            'category_id' => 1,
+        ]);
+        echo "RabbiqMQ";
     }
 }

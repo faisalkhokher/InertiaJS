@@ -161,4 +161,5 @@ Route::get('test', function () {
     // return "Event has been sent!";
 
     CallRabbiqJob::dispatch();
+
 });
