@@ -20,8 +20,7 @@
         "spatie/async": "^1.5",
         "spatie/data-transfer-object": "^2.8",
         "spiderwebtr/isauth": "^1.2",
-        "tightenco/ziggy": "^1.4",
-        "vladimir-yuldashev/laravel-queue-rabbitmq": "^11.3"
+        "tightenco/ziggy": "^1.4"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
