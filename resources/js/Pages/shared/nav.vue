@@ -17,6 +17,10 @@
             Post
         </NavLink>
 
+         <NavLink href="/category" class=ml-2>
+            LINK
+        </NavLink>
+
         <Link class=ml-2 href="/logout" method="post" as="button">Logout</Link>
 </template>
 

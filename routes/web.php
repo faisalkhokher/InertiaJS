@@ -62,6 +62,10 @@ Route::get('/register',[LoginController::class , 'register'])->name('register');
 Route::post('/register/user',[UserController::class , 'createUser'])->name('createUser');
 
 
+Route::get('/add/category',[PostController::class , 'viewCategory'])->name('category');
+Route::post('/save/category',[PostController::class , 'saveCategory'])->name('save-category');
+
+
 
 Route::get('/test',[ RepositoryController::class ,'triggerQueues']);
 

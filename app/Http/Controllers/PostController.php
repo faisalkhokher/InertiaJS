@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -47,5 +48,26 @@ class PostController extends Controller
             return view('ajax', compact('items'));
         }
         return view('ajax',compact('items'));
+    }
+
+    public function viewCategory()
+    {
+        $categories = [
+            'music',
+            'musicb',
+            'musicc'
+        ];
+        return Inertia::render('category',compact('categories'));
+    }
+
+    public function saveCategory(Request $request)
+    {
+        // dd($request->all());
+        $request->validate([
+            "title" => ["required"],
+            "password" => ["required"],
+        ]);
+        return "false";
+        // dd($request->all());
     }
 }
