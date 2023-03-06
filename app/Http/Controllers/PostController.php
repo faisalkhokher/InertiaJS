@@ -57,7 +57,7 @@ class PostController extends Controller
             'musicb',
             'musicc'
         ];
-        return Inertia::render('category',compact('categories'));
+        return Inertia::render('category/category',compact('categories'));
     }
 
     public function saveCategory(Request $request)
