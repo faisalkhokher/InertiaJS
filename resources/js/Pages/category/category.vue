@@ -67,6 +67,8 @@
         title="DYNAMIC TITLE"
         @update-post="onUpdatePost"
         @childComponentCall="callComponent"
+        @log="logger"
+        @client="driver"
     >
     <template v-slot:jobcads>
         <!-- component -->
@@ -261,11 +263,17 @@ export default {
             event.preventDefault();
             console.log("CALL");
         },
-        callComponent($event, id) {
-            event.preventDefault();
+        callComponent(id) {
             console.log("Componenet - Calling ");
-            console.log(event.target.id);
+            console.log(id);
         },
+        logger(value){
+            console.log(value);
+        },
+        driver(value) {
+            console.log('Parent Trigger');
+            console.log("Driver Listen to Client "+value); 
+        }
     },
     mounted() {
         console.log(this.form.categories);

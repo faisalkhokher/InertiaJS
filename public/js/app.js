@@ -438,7 +438,21 @@ __webpack_require__.r(__webpack_exports__);
     title: String,
     categories: Array
   },
-  emits: ["updatePost", "childComponentCall"],
+  setup: function setup(props, context) {
+    var CompositionEvent = function CompositionEvent() {
+      context.emit('childComponentCall', 10110101);
+    };
+
+    return {
+      CompositionEvent: CompositionEvent
+    };
+  },
+  methods: {
+    clientInput: function clientInput($event) {
+      console.log('Child Trigger');
+      this.$emit('client', $event.target.value);
+    }
+  },
   mounted: function mounted() {}
 });
 
@@ -532,10 +546,16 @@ __webpack_require__.r(__webpack_exports__);
       event.preventDefault();
       console.log("CALL");
     },
-    callComponent: function callComponent($event, id) {
-      event.preventDefault();
+    callComponent: function callComponent(id) {
       console.log("Componenet - Calling ");
-      console.log(event.target.id);
+      console.log(id);
+    },
+    logger: function logger(value) {
+      console.log(value);
+    },
+    driver: function driver(value) {
+      console.log('Parent Trigger');
+      console.log("Driver Listen to Client " + value);
     }
   },
   mounted: function mounted() {
@@ -1786,12 +1806,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-var _hoisted_1 = {
-  type: "text",
-  ref: "myInput"
-};
+
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+/* HOISTED */
+);
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+/* HOISTED */
+);
+
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "Direct $emit", -1
+/* HOISTED */
+);
+
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "Composition", -1
+/* HOISTED */
+);
+
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "Client", -1
+/* HOISTED */
+);
+
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+/* HOISTED */
+);
+
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "Slots", -1
 /* HOISTED */
 );
 
@@ -1806,21 +1846,43 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     )]);
   }), 128
   /* KEYED_FRAGMENT */
-  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", _hoisted_1, null, 512
-  /* NEED_PATCH */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <input type=\"text\" ref=\"myInput\" /> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return _ctx.$emit('updatePost');
     }),
     "class": "btn",
     id: "1"
-  }, " Call "), _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, " Call "), _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[1] || (_cache[1] = function ($event) {
       return _ctx.$emit('childComponentCall');
     }),
     id: "0011445566",
     "class": "btn"
-  }, " EMIT ")])]);
+  }, " EMIT "), _hoisted_2, _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "text",
+    onChange: _cache[2] || (_cache[2] = function ($event) {
+      return _ctx.$emit('log', $event.target.value);
+    }),
+    placeholder: "XXX"
+  }, null, 32
+  /* HYDRATE_EVENTS */
+  ), _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "text",
+    onChange: _cache[3] || (_cache[3] = function () {
+      return $setup.CompositionEvent && $setup.CompositionEvent.apply($setup, arguments);
+    }),
+    placeholder: "XXX"
+  }, null, 32
+  /* HYDRATE_EVENTS */
+  ), _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "text",
+    onChange: _cache[4] || (_cache[4] = function () {
+      return $options.clientInput && $options.clientInput.apply($options, arguments);
+    }),
+    placeholder: "Client . . ."
+  }, null, 32
+  /* HYDRATE_EVENTS */
+  )]), _hoisted_6, _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "jobcads")]);
 }
 
 /***/ }),
@@ -2079,7 +2141,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     categories: $props.categories,
     title: "DYNAMIC TITLE",
     onUpdatePost: $options.onUpdatePost,
-    onChildComponentCall: $options.callComponent
+    onChildComponentCall: $options.callComponent,
+    onLog: $options.logger,
+    onClient: $options.driver
   }, {
     jobcads: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" component "), _hoisted_11];
@@ -2089,7 +2153,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["categories", "onUpdatePost", "onChildComponentCall"])], 64
+  , ["categories", "onUpdatePost", "onChildComponentCall", "onLog", "onClient"])], 64
   /* STABLE_FRAGMENT */
   );
 }

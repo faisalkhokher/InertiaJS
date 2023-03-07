@@ -5,7 +5,7 @@
             <li>{{ category }}</li>
         </div>
         <form>
-            <input type="text" ref="myInput" />
+            <!-- <input type="text" ref="myInput" /> -->
             <button @click="$emit('updatePost')" class="btn" id="1">
                 Call
             </button>
@@ -17,7 +17,19 @@
             >
                 EMIT
             </button>
+            <br>
+            <strong>Direct $emit</strong>
+            <input type="text" @change="$emit('log',$event.target.value)" placeholder="XXX">
+
+            <strong>Composition</strong>
+            <input type="text" @change="CompositionEvent" placeholder="XXX">
+
+            <strong>Client</strong>
+            <input type="text" @change="clientInput" placeholder="Client . . .">
         </form>
+        <br>
+        <strong>Slots</strong>
+        <slot name="jobcads"></slot>
     </div>
 </template>
 
@@ -27,7 +39,18 @@ export default {
         title: String,
         categories: Array,
     },
-    emits: ["updatePost", "childComponentCall"],
+    setup(props,context) {
+      const CompositionEvent = () => {
+        context.emit('childComponentCall' , 10110101)
+      } 
+      return {CompositionEvent}
+    },
+    methods: {
+        clientInput($event){
+            console.log('Child Trigger');
+            this.$emit('client' , $event.target.value)
+        }
+    },
     mounted() {},
 };
 </script>
