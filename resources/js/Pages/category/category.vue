@@ -1,5 +1,15 @@
 <template>
     <div>
+        <p class="text-xl font-bold text-gray-900" style="color:red">Categories {{ this.$store.state.count }}</p>
+        <br>
+        <!-- <button @click="this.$store.commit('INCREASE_COUNT', 1)">Increment</button> -->
+        <button @click="vuex()">ADD</button>
+        <br>
+        <button @click="INCREASE_COUNT(4)">Mutation</button>
+        <br>
+        <button @click="INCREASE_ACTION(10)">Action</button>
+
+        {{title }}
         <form @submit.prevent="save">
             <div class="mb-6">
                 <label
@@ -15,6 +25,9 @@
                 />
                 <p class="mt-2 text-sm text-red-600 dark:text-red-500">
                     {{ form?.errors?.title }}
+                </p> 
+                <p class="mt-2 text-sm text-red-600 dark:text-red-500" v-if="v$.title.$errors[0]">
+                    {{v$.title.$errors[0].$message }}
                 </p>
             </div>
 
@@ -60,7 +73,14 @@
         </form>
     </div>
     
-
+    <Modal ref="openModal">
+        <template #context>
+            <div>
+                <h1>This Context Is From Parent</h1>
+                <button @click="closing">CLOSE</button>
+            </div>
+        </template>
+    </Modal>
     <!--  -->
     <Banner
         :categories="categories"
@@ -196,16 +216,30 @@ import { useForm } from "@inertiajs/inertia-vue3";
 import axios from "axios";
 import { ref } from "vue";
 import Banner from "./Banner-Componenet.vue";
+import useValidate from '@vuelidate/core'
+import { required } from '@vuelidate/validators'
+import Modal from '../modal/sheet.vue'
+import { mapActions, mapMutations, useStore } from 'vuex'
+import { useState, useActions } from 'vuex-composition-helpers/dist'
+// import store from '@/store'
+
 export default {
     data() {
         return {
+            v$: useValidate(),
             title: "",
             password: "",
             email: "",
         };
     },
+    validations() {
+    return {
+        title: { required },
+      }
+    },
     components: {
         Banner,
+        Modal
     },
     props: {
         categories: Array,
@@ -217,10 +251,30 @@ export default {
             password: "",
             categories: props.categories,
         });
+        // const {count} = useState(['count']);
         return { form };
     },
     methods: {
         save() {
+
+            console.log("WARNING "+this.title);
+            
+            // Open Modal
+            this.$refs.openModal.myBtn();
+
+            
+
+            console.log(this.v$.$validate());
+            console.log(this.v$.$error);
+            // if (this.v$.$error == true) {
+            //     // if ANY fail validation
+            //     console.log(this.v$.title.$errors[0].$message);
+            //     alert('Form failed validation')
+                
+            // } else {
+            //     alert('Form successfully submitted.')
+            // }
+            
             this.form.text = "TITLE";
             console.log("FORM => " + this.form.text);
             console.log("DATA => " + this.title);
@@ -273,10 +327,44 @@ export default {
         driver(value) {
             console.log('Parent Trigger');
             console.log("Driver Listen to Client "+value); 
+        },
+        closing(){
+            this.$refs.openModal.close();
+        },
+        vuex(){
+            console.log('VUEX');
+            // const store = this.$store;
+            // store.commit('INCREASE_COUNT',10);
+            // mapMutations(['INCREASE_COUNT']),
+            // Commit Mutation
+            // return this.$store.commit('INCREASE_COUNT',2)
+            // Commit Actions
+            // return this.$store.dispatch('INCREASE_ACTION',5)
+        },
+        ...mapMutations(['INCREASE_COUNT']),
+        ...mapActions(['INCREASE_ACTION']),
+    },
+    computed: {
+        appends() {
+            // return this.title
+            //     .split('')
+            //     .reverse()
+            //     .join('');
+            return this.$store.state.count
+        }
+    },
+    watch : {
+        title(value,old){
+            console.log(value,old);
         }
     },
     mounted() {
-        console.log(this.form.categories);
+        this.$refs.modalInput.focus()
+        console.log(this.$store);
+        
+    },
+    beforeMount() {
+        console.log(this.$store);
     },
 };
 </script>

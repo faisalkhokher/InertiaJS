@@ -2,6 +2,32 @@ import { createApp, h } from 'vue'
 import { createInertiaApp , Link , Head } from '@inertiajs/inertia-vue3'
 import { InertiaProgress } from '@inertiajs/progress'
 import Layout from './Pages/shared/Layout.vue'
+import { createStore } from 'vuex'
+import register from './store/register'
+import login from './store/login'
+
+// VueX
+const store = createStore({
+  modules:{
+    register : register,
+    login : login
+  },
+  state : {
+    count : 0,
+  },
+  mutations:{
+    INCREASE_COUNT(state,payload){
+      state.count += payload
+    }
+  },
+  actions : {
+    INCREASE_ACTION(mutation,payload){
+      mutation.commit('INCREASE_COUNT',payload)
+    }
+  }
+})
+
+
 createInertiaApp({
   resolve: name => {
   let page = require(`./Pages/${name}`).default;
@@ -16,6 +42,7 @@ createInertiaApp({
     .component('Head', Head)
     .mixin({ methods: { route } })
     .use(plugin)
+    .use(store)
     .mount(el)
 
     title : title => "My Page " + title
@@ -35,3 +62,5 @@ InertiaProgress.init({
     // Whether the NProgress spinner will be shown.
     showSpinner: false,
   })
+
+  

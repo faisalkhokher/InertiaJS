@@ -26,7 +26,16 @@ use App\Http\Controllers\RepositoryController;
 // Route::middleware(['auth'])->group(function () {
 
 
-Route::get('/', function () {
+Route::post('/local-hook', function(){
+    return "SUCCESS";
+});
+
+Route::get('/get-user', function(Request $request){
+    // dd(auth()->user()->id);
+    return User::where('id' , auth()->user()->id)->first();
+})->name('get-user');
+
+Route::get('/dash', function () {
     $time = now()->toTimeString();
     return Inertia::render('home' , [
         'name' => 'Inertia',
@@ -44,6 +53,7 @@ Route::get('/users',[UserController::class , 'index'])->name('users');
 Route::get('/create',[UserController::class , 'create'])->name('create');
 Route::post('/create-user',[UserController::class , 'createUser'])->name('create.user');
 
+
 Route::get('/setting' , function(){
     return Inertia::render('setting');
 })->name('setting');
@@ -56,7 +66,7 @@ Route::post('/logout' , function(){
 // ENd
 // });
 
-Route::get('/login',[LoginController::class , 'create'])->name('login');
+Route::get('/',[LoginController::class , 'create'])->name('login');
 Route::post('/login/in',[LoginController::class , 'login'])->name('loggedIn');
 Route::get('/register',[LoginController::class , 'register'])->name('register');
 Route::post('/register/user',[UserController::class , 'createUser'])->name('createUser');
@@ -166,4 +176,8 @@ Route::get('test', function () {
 
     CallRabbiqJob::dispatch();
 
+});
+
+Route::get('/login',function(){
+    return Inertia::render('Auth/Login');
 });

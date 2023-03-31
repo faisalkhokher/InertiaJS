@@ -25,13 +25,17 @@ class LoginController extends Controller
 
     public function login(Request $request) //
     {
+        // dd($request->all());
         if (\Auth::attempt([ 'email' => $request->email, 'password' => $request->password]))
         {
-            return redirect()->route('home');
+            // dd("OK");
+            return response()->json([
+                'email' => $request->email, 'password' => $request->password
+            ]);
         }
         else
         {
-            return "Not Authenticated";
+            return response()->json("Not Authenticated");
         }
     }
 }
