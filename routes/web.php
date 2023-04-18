@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Jobs\CallRabbiqJob;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\S3Controller;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
@@ -25,6 +26,7 @@ use App\Http\Controllers\RepositoryController;
 */
 // Route::middleware(['auth'])->group(function () {
 
+Route::get('s3' , [S3Controller::class , 'object']);
 
 Route::post('/local-hook', function(){
     return "SUCCESS";
