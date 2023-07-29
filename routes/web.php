@@ -12,6 +12,7 @@ use App\Http\Controllers\S3Controller;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RepositoryController;
 
 /*
@@ -28,7 +29,7 @@ use App\Http\Controllers\RepositoryController;
 
 Route::get('s3' , [S3Controller::class , 'object']);
 
-Route::post('/local-hook', function(){
+Route::post('/hook', function(){
     return "SUCCESS";
 });
 
@@ -171,15 +172,19 @@ Route::get('facade' , function (){
 Route::get('/home', function(){
     return view('pusher');
 });
-Route::get('test', function () {
+Route::get('itest', function () {
     // event(new App\Events\MessageSent('websolutionstuff_team'));
-    // event(new App\Events\AlertMessage('Faisal',"PROPERTY"));
-    // return "Event has been sent!";
+    event(new App\Events\AlertMessage('Faisal',"PROPERTY"));
+    return "Event has been sent!";
 
-    CallRabbiqJob::dispatch();
+    // CallRabbiqJob::dispatch();
 
 });
 
 Route::get('/login',function(){
     return Inertia::render('Auth/Login');
-});
+})->name('loginn');
+
+Route::get('/subscription',[PaymentController::class , 'index']);
+Route::get('/single-subscription/{id}',[PaymentController::class , 'singleSubs'])->name('single-subs');
+Route::post('subscription', [PaymentController::class, 'subscription'])->name("subscription.create");

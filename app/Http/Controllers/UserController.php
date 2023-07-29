@@ -36,7 +36,7 @@ class UserController extends Controller
             'password' => 'required',
         ]);
         User::create($request->all());
-        return redirect()->route('loggedIn');
+        return redirect()->route('loginn');
     }
 
     function test()

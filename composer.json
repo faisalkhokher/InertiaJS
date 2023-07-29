@@ -11,18 +11,21 @@
         "google/cloud-bigquery": "^1.23",
         "guzzlehttp/guzzle": "^7.0.1",
         "inertiajs/inertia-laravel": "^0.5.4",
+        "laravel/cashier": "^13.17",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/telescope": "^4.9",
         "laravel/tinker": "^2.5",
         "league/flysystem-aws-s3-v3": "^1.0",
         "nunomaduro/laravel-desktop-notifier": "^2.6",
+        "php-flasher/flasher-noty-laravel": "^1.13",
         "predis/predis": "^2.0",
         "pusher/pusher-php-server": "^7.2",
         "spatie/async": "^1.5",
         "spatie/data-transfer-object": "^2.8",
         "spiderwebtr/isauth": "^1.2",
-        "tightenco/ziggy": "^1.4"
+        "tightenco/ziggy": "^1.4",
+        "yoeunes/toastr": "^2.3"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
