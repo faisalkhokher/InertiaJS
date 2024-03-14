@@ -25,7 +25,7 @@
                 />
                 <p class="mt-2 text-sm text-red-600 dark:text-red-500">
                     {{ form?.errors?.title }}
-                </p> 
+                </p>
                 <p class="mt-2 text-sm text-red-600 dark:text-red-500" v-if="v$.title.$errors[0]">
                     {{v$.title.$errors[0].$message }}
                 </p>
@@ -72,7 +72,7 @@
             </button>
         </form>
     </div>
-    
+
     <Modal ref="openModal">
         <template #context>
             <div>
@@ -258,11 +258,11 @@ export default {
         save() {
 
             console.log("WARNING "+this.title);
-            
+
             // Open Modal
             this.$refs.openModal.myBtn();
 
-            
+
 
             console.log(this.v$.$validate());
             console.log(this.v$.$error);
@@ -270,11 +270,11 @@ export default {
             //     // if ANY fail validation
             //     console.log(this.v$.title.$errors[0].$message);
             //     alert('Form failed validation')
-                
+
             // } else {
             //     alert('Form successfully submitted.')
             // }
-            
+
             this.form.text = "TITLE";
             console.log("FORM => " + this.form.text);
             console.log("DATA => " + this.title);
@@ -326,7 +326,7 @@ export default {
         },
         driver(value) {
             console.log('Parent Trigger');
-            console.log("Driver Listen to Client "+value); 
+            console.log("Driver Listen to Client "+value);
         },
         closing(){
             this.$refs.openModal.close();
@@ -361,7 +361,7 @@ export default {
     mounted() {
         this.$refs.modalInput.focus()
         console.log(this.$store);
-        
+
     },
     beforeMount() {
         console.log(this.$store);

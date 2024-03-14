@@ -1,33 +1,26 @@
-FROM php:7.4-apache as php
+# Use an official PHP 7.4 image as the base image
+FROM php:7.4-apache
 
-RUN apt-get update -y
-RUN apt-get install -y unzip libpq-dev libcurl4-gnutls-dev
-RUN docker-php-ext-install pdo pdo_mysql bcmath
+# Set the working directory in the container
+WORKDIR /var/www/html
 
-RUN pecl install -o -f redis \
-    && rm -rf /tmp/pear \
-    && docker-php-ext-enable redis
+# Install system dependencies
+RUN apt-get update && \
+    apt-get install -y libzip-dev unzip && \
+    docker-php-ext-install zip && \
+    a2enmod rewrite
 
-
-WORKDIR /var/www
-COPY . .
-
+# Copy composer files and install dependencies
+COPY composer.json composer.lock ./
 COPY --from=composer:2.3.5 /usr/bin/composer /usr/bin/composer
-
-COPY docker/apache/000-default.conf /etc/apache2/sites-available/000-default.conf
-
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer install --no-dev --no-interaction --no-progress --optimize-autoloader
 
-RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
+# Copy the rest of the Laravel files
+COPY . .
 
-# RUN php artisan key:generate
-# RUN php artisan cache:clear
-# RUN php artisan config:clear
-# RUN php artisan route:clear 
-RUN exec docker-php-entrypoint "$@"
+# Set permissions
+RUN chown -R www-data:www-data storage bootstrap/cache
 
-CMD [ "/usr/sbin/apache2ctl" , "-D" , "FOREGROUND" ]
-
-ENTRYPOINT [ "docker/entrypoint.sh" ]
-
-# RUN php artisan serve --port=8000
+# Expose port 80
+EXPOSE 80
