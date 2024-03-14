@@ -33,3 +33,7 @@
 - composer require laravel/horizon--ignore-platform-reqs
 - composer require predis/predis --ignore-platform-reqs
 --ignore-platform-reqs
+
+
+-- RabbitMQ
+https://medium.com/@miladev95/laravel-rabbitmq-68ee0a9574d7

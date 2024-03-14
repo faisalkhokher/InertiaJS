@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use App\Services\RabbitMQService;
 
 class ExampleTest extends TestCase
 {
@@ -14,8 +15,29 @@ class ExampleTest extends TestCase
      */
     public function test_example()
     {
-        $response = $this->get('/');
+        $data = array(
+            'key1' => 'faisal',
+            'key2' => 'javed',
+            'key3' => 'value3'
+        );
 
-        $response->assertStatus(200);
+        // Convert data to JSON
+        $jsonData = json_encode($data);
+
+        $rabbitMQService = new RabbitMQService();
+        $rabbitMQService->publish($jsonData);
+        dd("RabbitMQ message sent successfully");
     }
+
+    // public function test_received_example()
+    // {
+    //     $rabbitMQService = new RabbitMQService();
+
+    //     $callback = function ($msg) {
+    //         echo "Received message: " . $msg->body . "\n";
+    //     };
+
+    //     $rabbitMQService->consume($callback);
+    //     dd("RabbitMQ received message successfully".$rabbitMQService->consume($callback));
+    // }
 }
