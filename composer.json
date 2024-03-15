@@ -14,7 +14,7 @@
         "laravel/cashier": "^13.17",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
-        "laravel/telescope": "^4.9",
+        "laravel/telescope": "^4.10",
         "laravel/tinker": "^2.5",
         "league/flysystem-aws-s3-v3": "^1.0",
         "nunomaduro/laravel-desktop-notifier": "^2.6",
@@ -26,6 +26,7 @@
         "spatie/data-transfer-object": "^2.8",
         "spiderwebtr/isauth": "^1.2",
         "tightenco/ziggy": "^1.4",
+        "vladimir-yuldashev/laravel-queue-rabbitmq": "^11.3",
         "yoeunes/toastr": "^2.3"
     },
     "require-dev": {
@@ -71,7 +72,11 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "platform": {
+            "ext-pcntl": "8.0",
+            "ext-posix": "8.0"
+          }
     },
     "minimum-stability": "dev",
     "prefer-stable": true

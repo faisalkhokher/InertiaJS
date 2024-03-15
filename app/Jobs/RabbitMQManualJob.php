@@ -4,20 +4,17 @@ namespace App\Jobs;
 
 use Faker\Factory;
 use App\Models\Post;
-use Faker\Factory as Faker;
 use Illuminate\Bus\Queueable;
+use App\Services\RabbitMQService;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
-use Facade\Ignition\Support\FakeComposer;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 
-class CallRabbiqJob implements ShouldQueue
+class RabbitMQManualJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
-    // https://github.com/vyuldashev/laravel-queue-rabbitmq/blob/master/README.md
 
     /**
      * Create a new job instance.
@@ -43,6 +40,8 @@ class CallRabbiqJob implements ShouldQueue
                 'user_id' => $faker->numberBetween(1, 10),
                 'category_id' => $faker->numberBetween(1, 10),
             ]);
+            (new RabbitMQService())->publish(json_encode($job));
         }
+        return true;
     }
 }

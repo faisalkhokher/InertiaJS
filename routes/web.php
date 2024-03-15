@@ -7,6 +7,7 @@ use App\Facade\MyFacade;
 use App\Models\Category;
 use App\Jobs\CallRabbiqJob;
 use Illuminate\Http\Request;
+use App\Jobs\RabbitMQManualJob;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\S3Controller;
 use App\Http\Controllers\PostController;
@@ -174,11 +175,12 @@ Route::get('/home', function(){
 });
 Route::get('itest', function () {
     // event(new App\Events\MessageSent('websolutionstuff_team'));
-    event(new App\Events\AlertMessage('Faisal',"PROPERTY"));
-    return "Event has been sent!";
+    // event(new App\Events\AlertMessage('Faisal',"PROPERTY"));
+    // return "Event has been sent!";
 
-    // CallRabbiqJob::dispatch();
-
+    CallRabbiqJob::dispatch();
+    // RabbitMQManualJob::dispatch();
+    dd("RabbitMQ message sent successfully");
 });
 
 Route::get('/login',function(){

@@ -10,7 +10,7 @@ class RabbitMQService
     protected $connection;
     protected $channel;
     protected $exchange = 'your_exchange_name';
-    protected $queue = 'rabbitmq_queue_waada';
+    protected $queue = 'rabbitmq_laravel_queue';
     protected $routingKey = 'your_routing_key';
 
     public function __construct()
